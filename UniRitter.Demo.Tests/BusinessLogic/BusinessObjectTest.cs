@@ -13,6 +13,7 @@ namespace UniRitter.Demo.Tests.BusinessLogic
     [TestFixture]
     public class BusinessObjectTest
     {
+        /*
         class BusinessObjectLocal : BusinessObject<Autor, IRepository<Autor>>
         {
             public BusinessObjectLocal(IRepository<Autor> repo)
@@ -31,5 +32,6 @@ namespace UniRitter.Demo.Tests.BusinessLogic
             target.Inserir(autor);
             A.CallTo(() => repo.Inserir(autor)).MustHaveHappened();
         }
+        */
     }
 }

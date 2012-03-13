@@ -10,7 +10,7 @@ namespace UniRitter.Demo.BusinessLogic
     internal abstract class BusinessObject<TEntidade, TRepository> 
         : IBusinessObject<TEntidade> 
         where TEntidade : IEntidade
-        where TRepository : IRepository<TEntidade>
+        //where TRepository : IRepository<TEntidade>
     {
         public BusinessObject(TRepository repo)
         {
@@ -19,7 +19,7 @@ namespace UniRitter.Demo.BusinessLogic
 
         public void Inserir(TEntidade entidade)
         {
-            Repo.Inserir(entidade);
+            //Repo.Inserir(entidade);
         }
 
 
