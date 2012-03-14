@@ -45,13 +45,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\UniRitter.Demo.DomainModel\UniRitter.Demo.DomainModel.csproj">
-      <Project>{82B3643D-67C4-47FE-8C19-AE50AF8B9000}</Project>
-      <Name>UniRitter.Demo.DomainModel</Name>
-    </ProjectReference>
     <ProjectReference Include="..\UniRitter.Demo.DataAccessLogic\UniRitter.Demo.DataAccessLogic.csproj">
       <Project>{A0917347-C13A-456C-9BCF-E9D38E1304DC}</Project>
       <Name>UniRitter.Demo.DataAccessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UniRitter.Demo.DomainModel\UniRitter.Demo.DomainModel.csproj">
+      <Project>{82B3643D-67C4-47FE-8C19-AE50AF8B9000}</Project>
+      <Name>UniRitter.Demo.DomainModel</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
