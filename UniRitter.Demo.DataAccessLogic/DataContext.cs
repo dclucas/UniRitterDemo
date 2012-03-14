@@ -7,7 +7,7 @@ using UniRitter.Demo.DomainModel;
 
 namespace UniRitter.Demo.DataAccessLogic
 {
-    internal class DataContext : DbContext
+    internal class DataContext : DbContext, UniRitter.Demo.DataAccessLogic.IDataContext
     {
         public virtual DbSet<Autor> Autores { get; set; }
         
@@ -18,6 +18,12 @@ namespace UniRitter.Demo.DataAccessLogic
         public DataContext()
         {
             Database.SetInitializer(new DropCreateDatabaseIfModelChanges<DataContext>());
+        }
+
+        public IDbSet<T> BuscarTodos<T>()
+            where T : class
+        {
+            return this.Set<T>();
         }
     }
 }

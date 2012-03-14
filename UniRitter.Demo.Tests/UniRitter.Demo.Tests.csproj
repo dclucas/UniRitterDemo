@@ -56,6 +56,7 @@
   <ItemGroup>
     <Compile Include="BusinessLogic\BusinessObjectTest.cs" />
     <Compile Include="DataAccess\DataContextTest.cs" />
+    <Compile Include="DataAccess\RepositoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

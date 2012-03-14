@@ -8,22 +8,30 @@ using UniRitter.Demo.DomainModel;
 
 namespace UniRitter.Demo.Tests.DataAccess
 {
-    [TestFixture]
-    public class DataContextTest
+    [TestFixture(typeof(Autor))]
+    [TestFixture(typeof(Genero))]
+    [TestFixture(typeof(Livro))]
+    public class DataContextTest<TEntidade> where TEntidade : class, IEntidade, new()
     {
         [Test]
         public void Add_AddsToDb()
         {
             DataContext target = new DataContext();
-            Autor a = new Autor();
-            string nome = "Autor" + Guid.NewGuid().ToString();
-            a.Nome = nome;
-            target.Set<Autor>().Add(a);
+            var entidade = CriarEntidade();
+            target.Set<TEntidade>().Add(entidade);
             target.SaveChanges();
 
             DataContext second = new DataContext();
-            var res = second.Set<Autor>().First(o => o.Nome.Equals(nome));
+            var res = second.Set<TEntidade>().First(o => o.Nome.Equals(entidade.Nome));
             Assert.IsNotNull(res);
+        }
+
+        public TEntidade CriarEntidade()
+        {
+            var t = typeof(TEntidade);
+            var entidade = new TEntidade();
+            entidade.Nome = t.Name + Guid.NewGuid().ToString();
+            return entidade;
         }
     }
 }

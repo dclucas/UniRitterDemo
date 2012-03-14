@@ -7,19 +7,18 @@ using UniRitter.Demo.DataAccessLogic;
 
 namespace UniRitter.Demo.BusinessLogic
 {
-    internal abstract class BusinessObject<TEntidade, TRepository> 
+    internal abstract class BusinessObject<TEntidade> 
         : IBusinessObject<TEntidade> 
-        where TEntidade : IEntidade
-        //where TRepository : IRepository<TEntidade>
+        where TEntidade : class, IEntidade
     {
-        public BusinessObject(TRepository repo)
+        public BusinessObject(IRepository<TEntidade> repo)
         {
             this.Repo = repo;
         }
 
         public void Inserir(TEntidade entidade)
         {
-            //Repo.Inserir(entidade);
+            throw new NotImplementedException();
         }
 
 
@@ -48,6 +47,6 @@ namespace UniRitter.Demo.BusinessLogic
             throw new NotImplementedException();
         }
 
-        public TRepository Repo { get; private set; }
+        public IRepository<TEntidade> Repo { get; private set; }
     }
 }
