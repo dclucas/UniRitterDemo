@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NUnit.Framework;
-using UniRitter.Demo.DataAccessLogic;
-using UniRitter.Demo.DomainModel;
-
-namespace UniRitter.Demo.Tests.DataAccess
+﻿namespace UniRitter.Demo.IntegratedTests.DataAccessLogic
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using NUnit.Framework;
+    using UniRitter.Demo.DataAccessLogic;
+    using UniRitter.Demo.DomainModel;
+
+    //[Ignore]
     [TestFixture(typeof(Autor))]
     [TestFixture(typeof(Genero))]
     [TestFixture(typeof(Livro))]

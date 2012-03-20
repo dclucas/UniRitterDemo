@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("UniRitter.Demo.DataAccessLogic")]
+[assembly: AssemblyTitle("UniRitter.Demo.IntegratedTests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("UniRitter.Demo.DataAccessLogic")]
+[assembly: AssemblyProduct("UniRitter.Demo.IntegratedTests")]
 [assembly: AssemblyCopyright("Copyright ©  2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("effa324e-fcc4-4475-b124-d52cf5dbca71")]
+[assembly: Guid("719247ca-3571-48b8-a73c-1dd2588e5a64")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -34,6 +34,3 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
-
-[assembly: InternalsVisibleTo("UniRitter.Demo.Tests")]
-[assembly: InternalsVisibleTo("UniRitter.Demo.IntegratedTests")]

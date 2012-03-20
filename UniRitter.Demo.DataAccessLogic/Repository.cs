@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using UniRitter.Demo.DomainModel;
 using System.Data.Entity;
+using System.Data;
 
 namespace UniRitter.Demo.DataAccessLogic
 {
@@ -15,41 +16,47 @@ namespace UniRitter.Demo.DataAccessLogic
             Context = context;
         }
 
-        public IDataContext Context { get; private set; }
+        protected IDataContext Context { get; private set; }
 
-        public void Inserir(T entidade)
+        public virtual void Inserir(T entidade)
         {
             var set = Context.BuscarTodos<T>();
             set.Add(entidade);
             Context.SaveChanges();
         }
 
-        public void Remover(T entidade)
+        public virtual void Remover(T entidade)
+        {
+            SalvarEstado(entidade, EntityState.Deleted);
+        }
+
+        protected void SalvarEstado(T entidade, EntityState entityState)
+        {
+            Context.SetarEstado<T>(entidade, entityState);
+            Context.SaveChanges();
+        }
+
+        public virtual void Atualizar(T entidade)
+        {
+            SalvarEstado(entidade, EntityState.Modified);
+        }
+
+        public virtual T BuscarPorId(int id)
+        {
+            return Context.BuscarPorId<T>(id);
+        }
+
+        public virtual IEnumerable<T> BuscarPorNome(string nome)
+        {
+            return Context.Buscar<T>(o => o.Nome.Contains(nome));
+        }
+
+        public virtual IEnumerable<T> BuscarTodos()
         {
             throw new NotImplementedException();
         }
 
-        public void Atualizar(T entidade)
-        {
-            throw new NotImplementedException();
-        }
-
-        public T BuscarPorId(int it)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<T> BuscarPorNome(string nome)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<T> BuscarTodos()
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<T> Buscar(System.Linq.Expressions.Expression<Func<T, bool>> func)
+        public virtual IEnumerable<T> Buscar(System.Linq.Expressions.Expression<Func<T, bool>> func)
         {
             throw new NotImplementedException();
         }
