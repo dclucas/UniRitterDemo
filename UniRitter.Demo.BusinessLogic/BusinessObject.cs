@@ -7,7 +7,7 @@ using UniRitter.Demo.DataAccessLogic;
 
 namespace UniRitter.Demo.BusinessLogic
 {
-    internal abstract class BusinessObject<TEntidade> 
+    internal class BusinessObject<TEntidade> 
         : IBusinessObject<TEntidade> 
         where TEntidade : class, IEntidade
     {
