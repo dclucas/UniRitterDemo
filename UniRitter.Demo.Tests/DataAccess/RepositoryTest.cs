@@ -10,6 +10,7 @@ using NUnit.Framework;
 using System.Data.Entity.Infrastructure;
 using System.Data;
 using System.Linq.Expressions;
+using Ploeh.AutoFixture;
 
 namespace UniRitter.Demo.Tests.DataAccess
 {
@@ -135,6 +136,29 @@ namespace UniRitter.Demo.Tests.DataAccess
 
             A.CallTo(() => db.Dispose())
                 .MustHaveHappened();
+        }
+
+        [Test]
+        public void BuscarPorNome_NomeExato_RetornaCorretamente()
+        {
+            var db = A.Fake<IDataContext>();
+            var target = new Repository<TEntidade>(db);
+            var fixture = new Fixture();
+
+            var entidades = fixture.CreateMany<TEntidade>().ToArray();
+            var entidade = entidades.OrderBy(e => e.Nome).First();
+            var nome = entidade.Nome;
+            var esperado = entidades.Where(e => e.Nome.Contains(nome)).ToArray();
+
+            A.CallTo(() => db.Buscar<TEntidade>())
+                .Returns(entidades);
+
+            var res = target.BuscarPorNome(nome).ToArray();
+
+            A.CallTo(() => db.Buscar<TEntidade>())
+                .MustHaveHappened();
+
+            CollectionAssert.AreEquivalent(esperado, res);
         }
     }
 }

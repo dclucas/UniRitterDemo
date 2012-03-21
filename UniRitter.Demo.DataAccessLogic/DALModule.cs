@@ -6,7 +6,7 @@ using Ninject.Modules;
 
 namespace UniRitter.Demo.DataAccessLogic
 {
-    public class DALModule : NinjectModule
+    public class DalModule : NinjectModule
     {
         public override void Load()
         {

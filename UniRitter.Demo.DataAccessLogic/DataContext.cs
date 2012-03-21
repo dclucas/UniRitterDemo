@@ -35,11 +35,10 @@ namespace UniRitter.Demo.DataAccessLogic
             return this.Set<T>().Where(predicado);
         }
 
-        public IEnumerable<T> Buscar<T>(Expression<Func<T, bool>> predicado, params string[] inclusoes)
+        public IEnumerable<T> Buscar<T>()
             where T : class
         {
-            return BuscarComInclusoes<T>(this.Set<T>().Where(predicado), 
-                inclusoes);
+            return this.Set<T>();
         }
 
         public IEnumerable<T> Buscar<T>(params string[] inclusoes)
@@ -53,13 +52,7 @@ namespace UniRitter.Demo.DataAccessLogic
             params string[] inclusoes)
             where T : class
         {
-            var q = query;
-            foreach (var i in inclusoes)
-            {
-                q = q.Include(i);
-            }
-
-            return q;
+            return inclusoes.Aggregate(query, (current, i) => current.Include(i));
         }
 
         public void SetarEstado<T>(T entidade, EntityState state) 
