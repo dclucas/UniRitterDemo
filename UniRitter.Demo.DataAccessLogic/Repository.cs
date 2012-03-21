@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using UniRitter.Demo.DomainModel;
 using System.Data.Entity;
@@ -48,17 +49,21 @@ namespace UniRitter.Demo.DataAccessLogic
 
         public virtual IEnumerable<T> BuscarPorNome(string nome)
         {
-            return Context.Buscar<T>(o => o.Nome.Contains(nome));
+            var q = from o in Context.Buscar<T>()
+                    where o.Nome.Contains(nome)
+                    select o;
+
+            return q;
         }
 
         public virtual IEnumerable<T> BuscarTodos()
         {
-            throw new NotImplementedException();
+            return Context.BuscarTodos<T>();
         }
 
-        public virtual IEnumerable<T> Buscar(System.Linq.Expressions.Expression<Func<T, bool>> func)
+        public IEnumerable<T> Buscar(params string[] inclusoes)
         {
-            throw new NotImplementedException();
+            return Context.Buscar<T>(inclusoes);
         }
 
         public void Dispose()

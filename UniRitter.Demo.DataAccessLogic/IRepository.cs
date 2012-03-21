@@ -22,6 +22,6 @@ namespace UniRitter.Demo.DataAccessLogic
 
         IEnumerable<T> BuscarTodos();
 
-        IEnumerable<T> Buscar(Expression<Func<T, bool>> func);
+        IEnumerable<T> Buscar(params string[] inclusoes);
     }
 }

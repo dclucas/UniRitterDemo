@@ -93,30 +93,48 @@ namespace UniRitter.Demo.Tests.DataAccess
         }
 
         [Test]
-        public void BuscarPorNome_Redireciona()
+        public void Buscar_ComInclusoes_Redireciona()
         {
             var db = A.Fake<IDataContext>();
-            var entities = new TEntidade[10];
+            var inc = new string[] { "abc", "def" };
+            var entidades = new TEntidade[5];
+            A.CallTo(() => db.Buscar<TEntidade>(inc))
+                .Returns(entidades);
             var target = new Repository<TEntidade>(db);
 
-            var nome = "nome";
+            var res = target.Buscar(inc);
 
-            Expression<Func<TEntidade, bool>> pred = 
-                ((TEntidade x) => x.Nome.Contains(nome));
-            A.CallTo(() => db.Buscar<TEntidade>(pred))
-                .Returns(entities);
-
-            var res = target.BuscarPorNome(nome);
-
-            A.CallTo(() => db.Buscar<TEntidade>(
-                A<Expression<Func<TEntidade, bool>>>
-                .That.Matches(f =>
-                    (f.Compile().Invoke(new TEntidade { Nome = nome }))
-                    && !(f.Compile().Invoke(new TEntidade { Nome = "foo" }))
-                )))
+            A.CallTo(() => db.Buscar<TEntidade>(inc))
                 .MustHaveHappened();
+            Assert.AreEqual(entidades, res);
+        }
 
-            Assert.AreEqual(entities, res);
+        [Test]
+        public void BuscarTodos_ComInclusoes_Redireciona()
+        {
+            var db = A.Fake<IDataContext>();
+            var entidades = A.Fake<IDbSet<TEntidade>>();
+            A.CallTo(() => db.BuscarTodos<TEntidade>())
+                .Returns(entidades);
+            var target = new Repository<TEntidade>(db);
+
+            var res = target.BuscarTodos();
+
+            A.CallTo(() => db.BuscarTodos<TEntidade>())
+                .MustHaveHappened();
+            Assert.AreEqual(entidades, res);
+        }
+
+        [Test]
+        public void Dispose_InvocaDispose()
+        {
+            var db = A.Fake<IDataContext>();
+            var target = new Repository<TEntidade>(db);
+
+            target.Dispose();
+
+            A.CallTo(() => db.Dispose())
+                .MustHaveHappened();
         }
     }
 }

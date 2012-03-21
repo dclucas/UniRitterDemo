@@ -1,4 +1,6 @@
-﻿namespace UniRitter.Demo.IntegratedTests.DataAccessLogic
+﻿using Ploeh.AutoFixture;
+
+namespace UniRitter.Demo.IntegratedTests.DataAccessLogic
 {
     using System;
     using System.Collections.Generic;
@@ -29,9 +31,8 @@
 
         public TEntidade CriarEntidade()
         {
-            var t = typeof(TEntidade);
-            var entidade = new TEntidade();
-            entidade.Nome = t.Name + Guid.NewGuid().ToString();
+            Fixture fixture = new Fixture();
+            var entidade = fixture.CreateAnonymous<TEntidade>();
             return entidade;
         }
     }
