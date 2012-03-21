@@ -35,6 +35,33 @@ namespace UniRitter.Demo.DataAccessLogic
             return this.Set<T>().Where(predicado);
         }
 
+        public IEnumerable<T> Buscar<T>(Expression<Func<T, bool>> predicado, params string[] inclusoes)
+            where T : class
+        {
+            return BuscarComInclusoes<T>(this.Set<T>().Where(predicado), 
+                inclusoes);
+        }
+
+        public IEnumerable<T> Buscar<T>(params string[] inclusoes)
+            where T : class
+        {
+            return BuscarComInclusoes<T>(this.Set<T>(), inclusoes);
+        }
+
+        internal IEnumerable<T> BuscarComInclusoes<T>(
+            IQueryable<T> query,
+            params string[] inclusoes)
+            where T : class
+        {
+            var q = query;
+            foreach (var i in inclusoes)
+            {
+                q = q.Include(i);
+            }
+
+            return q;
+        }
+
         public void SetarEstado<T>(T entidade, EntityState state) 
             where T : class
         {
