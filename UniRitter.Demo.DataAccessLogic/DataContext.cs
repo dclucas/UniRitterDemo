@@ -29,12 +29,6 @@ namespace UniRitter.Demo.DataAccessLogic
             return this.Set<T>();
         }
 
-        public IEnumerable<T> Buscar<T>(Expression<Func<T, bool>> predicado)
-            where T : class
-        {
-            return this.Set<T>().Where(predicado);
-        }
-
         public IEnumerable<T> Buscar<T>()
             where T : class
         {
