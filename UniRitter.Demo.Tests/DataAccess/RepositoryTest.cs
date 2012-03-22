@@ -22,9 +22,9 @@ namespace UniRitter.Demo.Tests.DataAccess
         [Test]
         public void Inserir_Redireciona()
         {
-            var db = A.Fake<IDataContext>();
+            var target = CriarTarget();
+            var db = target.Context;
             var set = A.Fake<IDbSet<TEntidade>>();
-            var target = new Repository<TEntidade>(db);
             var entidade = new TEntidade();
 
             A.CallTo(() => db.BuscarTodos<TEntidade>())
@@ -42,9 +42,9 @@ namespace UniRitter.Demo.Tests.DataAccess
         [Test]
         public void Atualizar_Redireciona()
         {
-            var db = A.Fake<IDataContext>();
+            var target = CriarTarget();
+            var db = target.Context;
             var set = A.Fake<IDbSet<TEntidade>>();
-            var target = new Repository<TEntidade>(db);
             var entidade = new TEntidade();
 
             target.Atualizar(entidade);
@@ -58,9 +58,9 @@ namespace UniRitter.Demo.Tests.DataAccess
         [Test]
         public void Remover_Redireciona()
         {
-            var db = A.Fake<IDataContext>();
+            var target = CriarTarget();
+            var db = target.Context;
             var set = A.Fake<IDbSet<TEntidade>>();
-            var target = new Repository<TEntidade>(db);
             var entidade = new TEntidade();
 
             target.Remover(entidade);
@@ -76,8 +76,8 @@ namespace UniRitter.Demo.Tests.DataAccess
         [Test]
         public void BuscarPorId_Redireciona()
         {
-            var db = A.Fake<IDataContext>();
-            var target = new Repository<TEntidade>(db);
+            var target = CriarTarget();
+            var db = target.Context;
             var entidade = new TEntidade();
 
             var key = 152;
@@ -95,12 +95,12 @@ namespace UniRitter.Demo.Tests.DataAccess
         [Test]
         public void Buscar_ComInclusoes_Redireciona()
         {
-            var db = A.Fake<IDataContext>();
+            var target = CriarTarget();
+            var db = target.Context;
             var inc = new string[] { "abc", "def" };
             var entidades = new TEntidade[5];
             A.CallTo(() => db.Buscar<TEntidade>(inc))
                 .Returns(entidades);
-            var target = new Repository<TEntidade>(db);
 
             var res = target.Buscar(inc);
 
@@ -112,11 +112,11 @@ namespace UniRitter.Demo.Tests.DataAccess
         [Test]
         public void BuscarTodos_ComInclusoes_Redireciona()
         {
-            var db = A.Fake<IDataContext>();
+            var target = CriarTarget();
+            var db = target.Context;
             var entidades = A.Fake<IDbSet<TEntidade>>();
             A.CallTo(() => db.BuscarTodos<TEntidade>())
                 .Returns(entidades);
-            var target = new Repository<TEntidade>(db);
 
             var res = target.BuscarTodos();
 
@@ -128,13 +128,58 @@ namespace UniRitter.Demo.Tests.DataAccess
         [Test]
         public void Dispose_InvocaDispose()
         {
-            var db = A.Fake<IDataContext>();
-            var target = new Repository<TEntidade>(db);
+            var target = CriarTarget();
 
             target.Dispose();
 
-            A.CallTo(() => db.Dispose())
+            A.CallTo(() => target.Context.Dispose())
                 .MustHaveHappened();
+        }
+
+        [Test]
+        public void Atualizar_Nulo_LancaExcecao()
+        {
+            var target = CriarTarget();
+            Assert.Throws<ArgumentNullException>(
+                () => target.Atualizar(null));
+        }
+
+        [Test]
+        public void Remover_Nulo_LancaExcecao()
+        {
+            var target = CriarTarget();
+            Assert.Throws<ArgumentNullException>(
+                () => target.Remover(null));
+        }
+
+        [Test]
+        public void Inserir_Nulo_LancaExcecao()
+        {
+            var target = CriarTarget();
+            Assert.Throws<ArgumentNullException>(
+                () => target.Inserir(null));
+        }
+
+        [Test]
+        public void BuscarPorNome_Nulo_LancaExcecao()
+        {
+            var target = CriarTarget();
+            Assert.Throws<ArgumentNullException>(
+                () => target.BuscarPorNome(null));
+        }
+
+        [Test]
+        public void BuscarPorNome_Vazio_LancaExcecao()
+        {
+            var target = CriarTarget();
+            Assert.Throws<ArgumentException>(
+                () => target.BuscarPorNome(String.Empty));
+        }
+
+        internal virtual Repository<TEntidade> CriarTarget()
+        {
+            return new Repository<TEntidade>(
+                A.Fake<IDataContext>());
         }
     }
 }

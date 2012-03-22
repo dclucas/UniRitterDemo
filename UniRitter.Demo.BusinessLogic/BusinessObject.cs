@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using UniRitter.Demo.DomainModel;
 using UniRitter.Demo.DataAccessLogic;
+using Seterlund.CodeGuard;
 
 namespace UniRitter.Demo.BusinessLogic
 {
@@ -18,31 +19,35 @@ namespace UniRitter.Demo.BusinessLogic
 
         public void Inserir(TEntidade entidade)
         {
+            Guard.That(() => entidade).IsNotNull();
             Repo.Inserir(entidade);
         }
 
 
         public void Remover(TEntidade entidade)
         {
+            Guard.That(() => entidade).IsNotNull();
             throw new NotImplementedException();
         }
 
         public void Atualizar(TEntidade entidade)
         {
+            Guard.That(() => entidade).IsNotNull();
             throw new NotImplementedException();
         }
 
-        public TEntidade BuscaPorId(int id)
+        public TEntidade BuscarPorId(int id)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<TEntidade> BuscaPorNome(string nome)
+        public IEnumerable<TEntidade> BuscarPorNome(string nome)
         {
+            Guard.That(() => nome).IsNotNull().IsNotEmpty();
             return Repo.BuscarPorNome(nome);
         }
 
-        public IEnumerable<TEntidade> BuscaTodos()
+        public IEnumerable<TEntidade> BuscarTodos()
         {
             throw new NotImplementedException();
         }

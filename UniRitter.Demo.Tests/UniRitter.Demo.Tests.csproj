@@ -52,6 +52,9 @@
     <Reference Include="Ploeh.SemanticComparison">
       <HintPath>..\packages\AutoFixture.2.9.2\lib\Ploeh.SemanticComparison.dll</HintPath>
     </Reference>
+    <Reference Include="Seterlund.CodeGuard, Version=2.1.4355.1013, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Seterlund.CodeGuard.2.1\lib\net40\Seterlund.CodeGuard.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />

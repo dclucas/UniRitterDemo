@@ -6,21 +6,23 @@ using System.Text;
 using UniRitter.Demo.DomainModel;
 using System.Data.Entity;
 using System.Data;
+using Seterlund.CodeGuard;
 
 namespace UniRitter.Demo.DataAccessLogic
 {
     internal class Repository<T> : IRepository<T>, IDisposable
         where T : class, IEntidade
     {
+        public IDataContext Context { get; private set; }
+
         public Repository(IDataContext context)
         {
             Context = context;
         }
 
-        protected IDataContext Context { get; private set; }
-
         public virtual void Inserir(T entidade)
         {
+            Guard.That(() => entidade).IsNotNull();
             var set = Context.BuscarTodos<T>();
             set.Add(entidade);
             Context.SaveChanges();
@@ -28,6 +30,7 @@ namespace UniRitter.Demo.DataAccessLogic
 
         public virtual void Remover(T entidade)
         {
+            Guard.That(() => entidade).IsNotNull();
             SalvarEstado(entidade, EntityState.Deleted);
         }
 
@@ -39,6 +42,7 @@ namespace UniRitter.Demo.DataAccessLogic
 
         public virtual void Atualizar(T entidade)
         {
+            Guard.That(() => entidade).IsNotNull();
             SalvarEstado(entidade, EntityState.Modified);
         }
 
@@ -49,6 +53,7 @@ namespace UniRitter.Demo.DataAccessLogic
 
         public virtual IEnumerable<T> BuscarPorNome(string nome)
         {
+            Guard.That(() => nome).IsNotNull().IsNotEmpty();
             var q = from o in Context.Buscar<T>()
                     where o.Nome.Contains(nome)
                     select o;
