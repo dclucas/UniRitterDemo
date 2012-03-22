@@ -18,7 +18,7 @@ namespace UniRitter.Demo.BusinessLogic
 
         public void Inserir(TEntidade entidade)
         {
-            throw new NotImplementedException();
+            Repo.Inserir(entidade);
         }
 
 
@@ -39,7 +39,7 @@ namespace UniRitter.Demo.BusinessLogic
 
         public IEnumerable<TEntidade> BuscaPorNome(string nome)
         {
-            throw new NotImplementedException();
+            return Repo.BuscarPorNome(nome);
         }
 
         public IEnumerable<TEntidade> BuscaTodos()
