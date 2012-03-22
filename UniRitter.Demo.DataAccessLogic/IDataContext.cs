@@ -13,6 +13,9 @@ namespace UniRitter.Demo.DataAccessLogic
         IDbSet<T> BuscarTodos<T>()
             where T : class;
 
+        IEnumerable<T> Buscar<T>()
+            where T : class;
+
         IEnumerable<T> Buscar<T>(params string[] inclusoes)
             where T : class;
 
