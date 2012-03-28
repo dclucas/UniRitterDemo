@@ -50,8 +50,8 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="moo">
-      <HintPath>..\packages\Moo.0.7.0\lib\net40\moo.dll</HintPath>
+    <Reference Include="Moo, Version=0.7.1.5196, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moo.0.7.1\lib\net40\Moo.dll</HintPath>
     </Reference>
     <Reference Include="Ninject">
       <HintPath>..\packages\Ninject.2.2.1.4\lib\net40-Full\Ninject.dll</HintPath>
@@ -91,6 +91,7 @@
   <ItemGroup>
     <Compile Include="App_Start\NinjectMVC3.cs" />
     <Compile Include="App_Start\RegisterClientValidationExtensions.cs" />
+    <Compile Include="BLModule.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AutorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />

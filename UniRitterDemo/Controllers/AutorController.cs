@@ -3,18 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Moo;
 using UniRitter.Demo.DomainModel;
 using UniRitter.Demo.BusinessLogic;
+using UniRitterDemo.Models;
 
 namespace UniRitterDemo.Controllers
 {
     public class AutorController : Controller
     {
-        private IBusinessObject<Autor> BO { get; set; }
+        public IBusinessObject<Autor> BO { get; private set; }
 
-        public AutorController(IBusinessObject<Autor> bo)
+        public IMapper<Autor, AutorModel> Mapper { get; private set; }
+
+        public AutorController(
+            IBusinessObject<Autor> bo,
+            IMapper<Autor, AutorModel> mapper)
         {
             BO = bo;
+            Mapper = mapper;
         }
 
         //
@@ -22,7 +29,9 @@ namespace UniRitterDemo.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            var entidades = BO.BuscarTodos();
+            var models = Mapper.MapMultiple(entidades);
+            return View(models);
         }
 
     }
