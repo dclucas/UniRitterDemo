@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using UniRitter.Demo.DomainModel;
 using FakeItEasy;
 using System.Data.Entity;
 using UniRitter.Demo.DataAccessLogic;
 using NUnit.Framework;
-using System.Data.Entity.Infrastructure;
 using System.Data;
-using System.Linq.Expressions;
 using Ploeh.AutoFixture;
 
 namespace UniRitter.Demo.Tests.DataAccess
@@ -81,7 +77,7 @@ namespace UniRitter.Demo.Tests.DataAccess
             var db = target.Context;
             var entidade = new TEntidade();
 
-            var key = 152;
+            const int key = 152;
             A.CallTo(() => db.BuscarPorId<TEntidade>(key))
                 .Returns(entidade);
 
@@ -182,11 +178,12 @@ namespace UniRitter.Demo.Tests.DataAccess
             return new Repository<TEntidade>(
                 A.Fake<IDataContext>());
         }
+
         [Test]
         public void BuscarPorNome_NomeExato_RetornaCorretamente()
         {
-            var db = A.Fake<IDataContext>();
-            var target = new Repository<TEntidade>(db);
+            var target = CriarTarget();
+            var db = target.Context;
             var fixture = new Fixture();
 
             var entidades = fixture.CreateMany<TEntidade>().ToArray();
