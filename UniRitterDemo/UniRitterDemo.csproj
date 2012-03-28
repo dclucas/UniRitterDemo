@@ -59,6 +59,9 @@
     <Reference Include="Ninject.Web.Mvc">
       <HintPath>..\packages\Ninject.MVC3.2.2.2.0\lib\net40-Full\Ninject.Web.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="Seterlund.CodeGuard, Version=2.1.4355.1013, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Seterlund.CodeGuard.2.1\lib\net40\Seterlund.CodeGuard.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -96,7 +99,6 @@
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\AutorModel.cs" />
-    <Compile Include="netfx\System\Guard.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

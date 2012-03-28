@@ -12,10 +12,10 @@ namespace UniRitter.Demo.BusinessLogic
 
         void Atualizar(TEntidade entidade);
 
-        TEntidade BuscaPorId(int id);
+        TEntidade BuscarPorId(int id);
 
-        IEnumerable<TEntidade> BuscaPorNome(string nome);
+        IEnumerable<TEntidade> BuscarPorNome(string nome);
 
-        IEnumerable<TEntidade> BuscaTodos();
+        IEnumerable<TEntidade> BuscarTodos();
     }
 }
