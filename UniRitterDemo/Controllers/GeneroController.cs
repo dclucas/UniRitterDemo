@@ -10,18 +10,18 @@ using UniRitterDemo.Models;
 
 namespace UniRitterDemo.Controllers
 {
-    public class AutorController : Controller
+    public class GeneroController : Controller
     {
-        public IBusinessObject<Autor> BO { get; private set; }
+        public IBusinessObject<Genero> BO { get; private set; }
 
-        public IMapper<Autor, AutorModel> Mapper { get; private set; }
+        public IMapper<Genero, GeneroModel> Mapper { get; private set; }
 
-        public IMapper<AutorModel, Autor> ModelMapper { get; private set; }
+        public IMapper<GeneroModel, Genero> ModelMapper { get; private set; }
 
-        public AutorController(
-            IBusinessObject<Autor> bo,
-            IMapper<Autor, AutorModel> mapper,
-            IMapper<AutorModel, Autor> modelMapper)
+        public GeneroController(
+            IBusinessObject<Genero> bo,
+            IMapper<Genero, GeneroModel> mapper,
+            IMapper<GeneroModel, Genero> modelMapper)
         {
             BO = bo;
             Mapper = mapper;
@@ -29,7 +29,7 @@ namespace UniRitterDemo.Controllers
         }
 
         //
-        // GET: /Autor/
+        // GET: /Genero/
 
         public ActionResult Index()
         {
@@ -50,8 +50,7 @@ namespace UniRitterDemo.Controllers
             return MostrarDetalhes(id);
         }
 
-        [HttpPost]
-        public ActionResult Delete(AutorModel model)
+        public ActionResult Delete(GeneroModel model)
         {
             var entidade = ModelMapper.Map(model);
             BO.Remover(entidade);

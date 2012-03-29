@@ -27,7 +27,7 @@ namespace UniRitter.Demo.BusinessLogic
         public void Remover(TEntidade entidade)
         {
             Guard.That(() => entidade).IsNotNull();
-            throw new NotImplementedException();
+            Repo.Remover(entidade);
         }
 
         public void Atualizar(TEntidade entidade)
@@ -38,7 +38,7 @@ namespace UniRitter.Demo.BusinessLogic
 
         public TEntidade BuscarPorId(int id)
         {
-            throw new NotImplementedException();
+            return Repo.BuscarPorId(id);
         }
 
         public IEnumerable<TEntidade> BuscarPorNome(string nome)
@@ -49,7 +49,7 @@ namespace UniRitter.Demo.BusinessLogic
 
         public IEnumerable<TEntidade> BuscarTodos()
         {
-            throw new NotImplementedException();
+            return Repo.BuscarTodos();
         }
 
         public IRepository<TEntidade> Repo { get; private set; }
