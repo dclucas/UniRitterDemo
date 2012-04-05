@@ -1,16 +1,16 @@
-﻿using Moo;
-using Ninject.Activation;
-using Ninject.Modules;
-
-namespace UniRitterDemo
+﻿namespace UniRitterDemo
 {
-    public class BLModule : NinjectModule
+    using Moo;
+    using Ninject.Activation;
+    using Ninject.Modules;
+
+    public class UIModule : NinjectModule
     {
         public override void Load()
         {
+            Bind<IMappingRepository>().ToMethod(c => MappingRepository.Default);
             Bind(typeof(IMapper<,>))
-                .ToMethod(
-                    ResolveMapper);
+                .ToMethod(ResolveMapper);
         }
 
         private object ResolveMapper(IContext ctx)

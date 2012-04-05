@@ -17,37 +17,37 @@ namespace UniRitter.Demo.BusinessLogic
             this.Repo = repo;
         }
 
-        public void Inserir(TEntidade entidade)
+        public virtual void Inserir(TEntidade entidade)
         {
             Guard.That(() => entidade).IsNotNull();
             Repo.Inserir(entidade);
         }
 
 
-        public void Remover(TEntidade entidade)
+        public virtual void Remover(TEntidade entidade)
         {
             Guard.That(() => entidade).IsNotNull();
             Repo.Remover(entidade);
         }
 
-        public void Atualizar(TEntidade entidade)
+        public virtual void Atualizar(TEntidade entidade)
         {
             Guard.That(() => entidade).IsNotNull();
             throw new NotImplementedException();
         }
 
-        public TEntidade BuscarPorId(int id)
+        public virtual TEntidade BuscarPorId(int id)
         {
             return Repo.BuscarPorId(id);
         }
 
-        public IEnumerable<TEntidade> BuscarPorNome(string nome)
+        public virtual IEnumerable<TEntidade> BuscarPorNome(string nome)
         {
             Guard.That(() => nome).IsNotNull().IsNotEmpty();
             return Repo.BuscarPorNome(nome);
         }
 
-        public IEnumerable<TEntidade> BuscarTodos()
+        public virtual IEnumerable<TEntidade> BuscarTodos()
         {
             return Repo.BuscarTodos();
         }

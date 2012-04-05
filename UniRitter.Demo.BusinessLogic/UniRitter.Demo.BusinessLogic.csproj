@@ -51,6 +51,7 @@
     <Compile Include="BLModule.cs" />
     <Compile Include="BusinessObject.cs" />
     <Compile Include="IBusinessObject.cs" />
+    <Compile Include="LivroBO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
