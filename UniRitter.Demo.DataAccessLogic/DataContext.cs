@@ -20,7 +20,7 @@ namespace UniRitter.Demo.DataAccessLogic
 
         public DataContext()
         {
-            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<DataContext>());
+            Database.SetInitializer(new DataContextInitializer());
         }
 
         public IDbSet<T> BuscarTodos<T>()

@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="DALModule.cs" />
     <Compile Include="DataContext.cs" />
+    <Compile Include="DataContextInitializer.cs" />
     <Compile Include="IDataContext.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
