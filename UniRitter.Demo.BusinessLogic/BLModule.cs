@@ -15,6 +15,8 @@
             this.Bind<IBusinessObject<Livro>>().To<LivroBO>();
             this.Bind<IBusinessObject<Autor>>().To<BusinessObject<Autor>>();
             this.Bind<IBusinessObject<Genero>>().To<BusinessObject<Genero>>();
+            this.Bind<ILookupHelper>().ToMethod(
+                c => new LookupHelper(this.Kernel.GetService));
         }
     }
 }

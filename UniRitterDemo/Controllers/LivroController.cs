@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Moo;
-using UniRitter.Demo.BusinessLogic;
-using UniRitter.Demo.DomainModel;
-
-namespace UniRitterDemo.Controllers
+﻿namespace UniRitterDemo.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web;
+    using System.Web.Mvc;
+    using Moo;
+    using UniRitter.Demo.BusinessLogic;
+    using UniRitter.Demo.DomainModel;
     using UniRitterDemo.Models;
 
     public class LivroController : Controller
@@ -24,9 +23,9 @@ namespace UniRitterDemo.Controllers
             IMappingRepository mappingRepo,
             ILookupHelper lookupHelper)
         {
-            BO = bo;
-            MappingRepo = mappingRepo;
-            LookupHelper = lookupHelper;
+            this.BO = bo;
+            this.MappingRepo = mappingRepo;
+            this.LookupHelper = lookupHelper;
         }
 
         public ActionResult Index()
@@ -43,7 +42,8 @@ namespace UniRitterDemo.Controllers
             var lookups = this.LookupHelper.BuscarTodos<T>();
             var mapper = this.MappingRepo.ResolveMapper(typeof(T), typeof(LookupModel));
             var lookupName = string.Format("{0}Lookup", typeof(T).Name);
-            ViewData.Add(lookupName, mapper.Map(lookups));
+            var models = from l in lookups select mapper.Map(l);
+            ViewData.Add(lookupName, models);
         }
 
         public ActionResult Edit(int id)
@@ -53,9 +53,9 @@ namespace UniRitterDemo.Controllers
 
         private ActionResult MostrarModel<T>(int id)
         {
-            PopularLookups();
-            var entidade = BO.BuscarPorId(id);
-            var mapper = MappingRepo.ResolveMapper(typeof(Livro), typeof(T));
+            this.PopularLookups();
+            var entidade = this.BO.BuscarPorId(id);
+            var mapper = this.MappingRepo.ResolveMapper(typeof(Livro), typeof(T));
             var model = mapper.Map(entidade);
             return this.View(model);
         }
@@ -64,6 +64,12 @@ namespace UniRitterDemo.Controllers
         {
             this.PopularLookup<Autor>();
             this.PopularLookup<Genero>();
+        }
+
+        public ActionResult Create()
+        {
+            this.PopularLookups();
+            return this.View();
         }
     }
 }

@@ -41,7 +41,7 @@ namespace UniRitter.Demo.BusinessLogic
         private IRepository<T> GetRepo<T>()
             where T : class, IEntidade
         {
-            return (IRepository<T>)CreateFunc(typeof(T));
+            return (IRepository<T>)CreateFunc(typeof(IRepository<T>));
         }
     }
 }
