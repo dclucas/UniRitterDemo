@@ -17,21 +17,53 @@ namespace UniRitterDemo.Controllers
 
         public IMappingRepository MappingRepo { get; set; }
 
+        public ILookupHelper LookupHelper { get; set; }
+
         public LivroController(
             IBusinessObject<Livro> bo,
-            IMappingRepository mappingRepo)
+            IMappingRepository mappingRepo,
+            ILookupHelper lookupHelper)
         {
             BO = bo;
             MappingRepo = mappingRepo;
+            LookupHelper = lookupHelper;
         }
 
         public ActionResult Index()
         {
-            var entidades = BO.BuscarTodos();
-            var mapper = MappingRepo.ResolveMapper<Livro, LivroIndexModel>();
+            var entidades = this.BO.BuscarTodos();
+            var mapper = this.MappingRepo.ResolveMapper<Livro, LivroIndexModel>();
             var models = mapper.MapMultiple(entidades);
             return View(models);
         }
 
+        private void PopularLookup<T>()
+            where T : class, IEntidade
+        {
+            var lookups = this.LookupHelper.BuscarTodos<T>();
+            var mapper = this.MappingRepo.ResolveMapper(typeof(T), typeof(LookupModel));
+            var lookupName = string.Format("{0}Lookup", typeof(T).Name);
+            ViewData.Add(lookupName, mapper.Map(lookups));
+        }
+
+        public ActionResult Edit(int id)
+        {
+            return MostrarModel<LivroEditModel>(id);
+        }
+
+        private ActionResult MostrarModel<T>(int id)
+        {
+            PopularLookups();
+            var entidade = BO.BuscarPorId(id);
+            var mapper = MappingRepo.ResolveMapper(typeof(Livro), typeof(T));
+            var model = mapper.Map(entidade);
+            return this.View(model);
+        }
+
+        private void PopularLookups()
+        {
+            this.PopularLookup<Autor>();
+            this.PopularLookup<Genero>();
+        }
     }
 }

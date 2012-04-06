@@ -21,4 +21,21 @@ namespace UniRitterDemo.Models
 
         public string GeneroNome { get; set; }
     }
+
+    public class LivroEditModel
+    {
+        public int Id { get; set; }
+
+        public string Nome { get; set; }
+
+        public string Fonte { get; set; }
+
+        public int AnoPublicacao { get; set; }
+
+        public string Editora { get; set; }
+
+        public string AutorNome { get; set; }
+
+        public string GeneroNome { get; set; }
+    }
 }
