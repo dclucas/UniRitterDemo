@@ -34,6 +34,10 @@ namespace UniRitterDemo.Models
 
         public string Editora { get; set; }
 
+        public string AutorNome { get; set; }
+
+        public string GeneroNome { get; set; }
+
         public int AutorId { get; set; }
 
         public int GeneroId { get; set; }

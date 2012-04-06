@@ -53,7 +53,7 @@ namespace UniRitter.Demo.DataAccessLogic
 
         public virtual IEnumerable<T> BuscarPorNome(string nome)
         {
-            Guard.That(() => nome).IsNotNull().IsNotEmpty();
+            Guard.That(() => nome).IsNotNull();
             var q = from o in Context.Buscar<T>()
                     where o.Nome.Contains(nome)
                     select o;
