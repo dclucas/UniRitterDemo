@@ -75,7 +75,6 @@ namespace UniRitter.Demo.DataAccessLogic
                     Genero = context.Generos.Single(g => g.Nome.Equals(generoNome)),
                     Fonte = fonte,
                     AnoPublicacao = ano,
-
                 };
         }
 
