@@ -4,6 +4,36 @@
 @{
     ViewBag.Title = "Create";
 }
+<link href=@Url.Content("~/Content/themes/base/jquery.ui.autocomplete.css") rel="stylesheet" type="text/css" />
+<script src="@Url.Content("~/Scripts/jquery-ui-1.8.18.min.js")" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function () {
+        var projects = [
+			{
+			    id: "1",
+			    label: "ABCDEFGHI"
+			},
+			{
+			    id: "2",
+			    label: "BCDEFGHIJ"
+			},
+			{
+			    id: "3",
+			    label: "DEFGHIJK"
+			}
+		];
+
+        $("#AutorNome").autocomplete({
+            source: "@Url.Action("ListarAutores", "Lookup")",
+            minLength: 0,
+            select: function (event, ui) {
+                $("#AutorNome").val(ui.item.nome);
+                $("#AutorId").val(ui.item.id);
+            }
+        });
+    });
+	</script>
+
 
 <h2>Create</h2>
 
@@ -43,16 +73,18 @@
             @Html.LabelFor(model => model.Editora)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Editora)
-            @Html.ValidationMessageFor(model => model.Editora)
+            @Html.EditorFor(m => m.Editora)
         </div>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.AutorId)
         </div>
         <div class="editor-field">
-            @Html.DropDownListFor(model => model.AutorId, 
+            @Html.HiddenFor(model => model.AutorId)
+            @Html.TextBoxFor(model => model.AutorNome)
+            @*            @Html.DropDownListFor(model => model.AutorId, 
             new SelectList((IEnumerable)ViewData["AutorLookup"], "Id", "Nome"))
+*@        
         </div>
 
         <div class="editor-label">

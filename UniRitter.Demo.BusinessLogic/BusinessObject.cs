@@ -43,7 +43,7 @@ namespace UniRitter.Demo.BusinessLogic
 
         public virtual IEnumerable<TEntidade> BuscarPorNome(string nome)
         {
-            Guard.That(() => nome).IsNotNull().IsNotEmpty();
+            Guard.That(() => nome).IsNotNull();
             return Repo.BuscarPorNome(nome);
         }
 

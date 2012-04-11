@@ -28,6 +28,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{2F3DF9
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Integration", "Integration", "{72DE948E-D542-4BA6-B062-7FB3AAFB23A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniRitterDemo.Services", "UniRitterDemo.Services\UniRitterDemo.Services.csproj", "{1DEF330C-732E-474F-801E-D330088B885C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -58,6 +62,10 @@ Global
 		{6D609ADD-AA82-41C0-BFD8-C7FD1F52B75B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D609ADD-AA82-41C0-BFD8-C7FD1F52B75B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D609ADD-AA82-41C0-BFD8-C7FD1F52B75B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DEF330C-732E-474F-801E-D330088B885C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DEF330C-732E-474F-801E-D330088B885C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DEF330C-732E-474F-801E-D330088B885C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DEF330C-732E-474F-801E-D330088B885C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,5 +77,6 @@ Global
 		{B20A0033-944B-4D49-803C-B181D7E6FE59} = {E3EFF373-7285-4F30-8E34-5D17863D5352}
 		{6D609ADD-AA82-41C0-BFD8-C7FD1F52B75B} = {E3EFF373-7285-4F30-8E34-5D17863D5352}
 		{82B3643D-67C4-47FE-8C19-AE50AF8B9000} = {7D57B19D-999B-429A-92CD-B7A9D5EE3135}
+		{1DEF330C-732E-474F-801E-D330088B885C} = {72DE948E-D542-4BA6-B062-7FB3AAFB23A4}
 	EndGlobalSection
 EndGlobal
