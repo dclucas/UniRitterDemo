@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="UniRitterDemo.Services.AutorService" CodeBehind="AutorService.svc.cs" Factory="Ninject.Extensions.Wcf.NinjectServiceHostFactory" %>
