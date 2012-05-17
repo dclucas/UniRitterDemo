@@ -1,7 +1,7 @@
-[assembly: WebActivator.PreApplicationStartMethod(typeof(UniRitterDemo.App_Start.NinjectWebCommon), "Start")]
-[assembly: WebActivator.ApplicationShutdownMethodAttribute(typeof(UniRitterDemo.App_Start.NinjectWebCommon), "Stop")]
+[assembly: WebActivator.PreApplicationStartMethod(typeof(UniRitterDemo.Services.App_Start.NinjectWebCommon), "Start")]
+[assembly: WebActivator.ApplicationShutdownMethodAttribute(typeof(UniRitterDemo.Services.App_Start.NinjectWebCommon), "Stop")]
 
-namespace UniRitterDemo.App_Start
+namespace UniRitterDemo.Services.App_Start
 {
     using System;
     using System.Web;
@@ -53,7 +53,7 @@ namespace UniRitterDemo.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Load("UniRitter.Demo.*.dll");
+            kernel.Load("U*.dll");
         }        
     }
 }

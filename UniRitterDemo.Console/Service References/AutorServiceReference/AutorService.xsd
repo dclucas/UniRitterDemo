@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/UniRitterDemo.Services.DataContracts" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/UniRitterDemo.Services.DataContracts" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="AutorDataContract">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:EntityDataContract">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AutorDataContract" nillable="true" type="tns:AutorDataContract" />
+  <xs:complexType name="EntityDataContract">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Nome" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EntityDataContract" nillable="true" type="tns:EntityDataContract" />
+  <xs:complexType name="ArrayOfAutorDataContract">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AutorDataContract" nillable="true" type="tns:AutorDataContract" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAutorDataContract" nillable="true" type="tns:ArrayOfAutorDataContract" />
+</xs:schema>

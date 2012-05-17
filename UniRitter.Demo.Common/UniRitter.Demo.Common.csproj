@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{B174B986-C155-47F2-881F-8AF4288855DB}</ProjectGuid>
+    <ProjectGuid>{96E95429-2E35-4A51-9B9D-D80F162F4F72}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>UniRitter.Demo.BusinessLogic</RootNamespace>
-    <AssemblyName>UniRitter.Demo.BusinessLogic</AssemblyName>
+    <RootNamespace>UniRitter.Demo.Common</RootNamespace>
+    <AssemblyName>UniRitter.Demo.Common</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\UniRitterDemo\</SolutionDir>
@@ -33,12 +33,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Ninject, Version=3.0.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Ninject.3.0.0.15\lib\net40\Ninject.dll</HintPath>
+    <Reference Include="Moo">
+      <HintPath>..\packages\Moo.0.7.1\lib\net40\Moo.dll</HintPath>
     </Reference>
-    <Reference Include="Seterlund.CodeGuard, Version=2.1.4355.1013, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Seterlund.CodeGuard.2.1\lib\net40\Seterlund.CodeGuard.dll</HintPath>
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.3.0.0.15\lib\net40\Ninject.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -49,23 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BLModule.cs" />
-    <Compile Include="BusinessObject.cs" />
-    <Compile Include="IBusinessObject.cs" />
-    <Compile Include="ILookupHelper.cs" />
-    <Compile Include="LivroBO.cs" />
-    <Compile Include="LookupHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\UniRitter.Demo.DataAccessLogic\UniRitter.Demo.DataAccessLogic.csproj">
-      <Project>{A0917347-C13A-456C-9BCF-E9D38E1304DC}</Project>
-      <Name>UniRitter.Demo.DataAccessLogic</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\UniRitter.Demo.DomainModel\UniRitter.Demo.DomainModel.csproj">
-      <Project>{82B3643D-67C4-47FE-8C19-AE50AF8B9000}</Project>
-      <Name>UniRitter.Demo.DomainModel</Name>
-    </ProjectReference>
+    <Compile Include="MappingModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

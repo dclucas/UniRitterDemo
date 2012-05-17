@@ -1,10 +1,10 @@
-﻿namespace UniRitterDemo
+﻿namespace UniRitter.Demo.Common
 {
     using Moo;
     using Ninject.Activation;
     using Ninject.Modules;
 
-    public class UIModule : NinjectModule
+    public class MappingModule : NinjectModule
     {
         public override void Load()
         {
